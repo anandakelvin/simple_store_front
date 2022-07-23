@@ -3,14 +3,21 @@ import styled from "styled-components";
 
 export default class Currency extends React.Component {
 	render() {
-		const { currency } = this.props;
-		return <CurrencyLi>{currency.symbol}</CurrencyLi>;
+		const { currency, onClick } = this.props;
+		return (
+			<Li>
+				<Button onClick={onClick}>{currency.symbol}</Button>
+			</Li>
+		);
 	}
 }
 
-const CurrencyLi = styled.li`
-	padding: 10px;
+const Li = styled.li`
 	list-style-type: none;
+`;
+
+const Button = styled.button`
+	padding: 10px;
 	text-align: center;
 	background-color: #fff;
 
