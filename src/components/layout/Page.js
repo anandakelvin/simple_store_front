@@ -7,14 +7,20 @@ export default class Page extends React.Component {
 		const { children } = this.props;
 		return (
 			<>
-				<Navbar />
-				<Div>{children}</Div>
+				<header>
+					<Navbar />
+				</header>
+				<Body>{children}</Body>
 			</>
 		);
 	}
 }
 
-const Div = styled.div`
+const Body = styled.body`
+	margin-left: auto;
+	margin-right: auto;
 	max-width: 1024px;
+	padding: 20px;
+	padding-top: 0px;
 	background-color: white;
 `;
