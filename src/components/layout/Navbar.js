@@ -24,6 +24,10 @@ const LogoWrapper = styled.div`
 `;
 
 const Nav = styled.nav`
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: 20px;
+	padding-right: 20px;
 	max-width: 1024px;
 	display: grid;
 	grid-template-columns: repeat(3, minmax(0, 1fr));
