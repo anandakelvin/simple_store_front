@@ -9,7 +9,7 @@ export default class CategoryRoute extends React.Component {
 		const { name, products } = category;
 		return (
 			<Page>
-				<Title>{name}</Title>
+				<Title>{name.capitalize()}</Title>
 				<CategoryProducts products={products} />
 			</Page>
 		);
