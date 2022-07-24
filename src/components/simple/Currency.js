@@ -5,16 +5,12 @@ export default class Currency extends React.Component {
 	render() {
 		const { currency, onClick } = this.props;
 		return (
-			<Li>
+			<option>
 				<Button onClick={onClick}>{currency.symbol}</Button>
-			</Li>
+			</option>
 		);
 	}
 }
-
-const Li = styled.li`
-	list-style-type: none;
-`;
 
 const Button = styled.button`
 	padding: 10px;
