@@ -12,6 +12,7 @@ Default.args = {
 	product: {
 		id: "ps-5",
 		name: "PlayStation 5",
+		inStock: true,
 		brand: "Sony",
 		gallery: [
 			"https://images-na.ssl-images-amazon.com/images/I/510VSJ9mWDL._SL1262_.jpg",
