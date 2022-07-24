@@ -10,6 +10,7 @@ export default class Category extends React.Component {
 }
 
 const Li = styled.li`
+	cursor: pointer;
 	padding: 20px;
 	border: 3px solid white;
 	font-weight: 400;
