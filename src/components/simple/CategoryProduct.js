@@ -12,7 +12,7 @@ export default class CategoryProduct extends React.Component {
 				<Image src={gallery[0]} />
 				<Gap />
 				<ProductBrandName>{`${brand} ${name}`}</ProductBrandName>
-				<ProductPrice>{`${prices[0].currency.symbol} ${prices[0].amount}`}</ProductPrice>
+				<ProductPrice>{`${prices[0].currency.symbol}${prices[0].amount}`}</ProductPrice>
 			</Button>
 		);
 	}
