@@ -5,6 +5,13 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 
+// eslint-disable-next-line no-extend-native
+Object.defineProperty(String.prototype, "capitalize", {
+	value: function () {
+		return this.charAt(0).toUpperCase() + this.slice(1);
+	},
+});
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
 	<React.StrictMode>
