@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import Categories from "../composite/Categories";
 import Logo from "../../assets/logo.svg";
+import Currencies from "../composite/Currencies";
+import CurrenciesContainer from "../container/CurrenciesContainer";
 
 export default class Navbar extends React.Component {
 	render() {
@@ -13,10 +15,25 @@ export default class Navbar extends React.Component {
 				<LogoWrapper>
 					<img src={Logo} alt="Logo" />
 				</LogoWrapper>
+				<RightSideWrapper>
+					<CurrenciesContainer />
+					{/* <Currencies
+						currencies={[
+							{ symbol: "$", label: "USD" },
+							{ symbol: "$", label: "USD" },
+						]}
+					/> */}
+				</RightSideWrapper>
 			</Nav>
 		);
 	}
 }
+
+const RightSideWrapper = styled.div`
+	display: flex;
+	justify-content: end;
+	align-items: center;
+`;
 
 const LogoWrapper = styled.div`
 	display: flex;

@@ -1,23 +1,32 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchCurrencies } from "../../features/currencies/currenciesSlice";
+import {
+	fetchCurrencies,
+	setSelectedCurrency,
+} from "../../features/currencies/currenciesSlice";
+import Currencies from "../composite/Currencies";
 
 class CurrenciesContainer extends React.Component {
 	componentDidMount() {
 		this.props.dispatch(fetchCurrencies());
 	}
+
 	render() {
-		const { value: currencies } = this.props.currencies;
+		const { value: currencies, selectedCurrency } = this.props.currencies;
 		const dispatch = this.props.dispatch;
 
-		//TODO: Create Currencies UI Component
-		return <></>;
+		return (
+			<Currencies
+				onSelect={(currency) => dispatch(setSelectedCurrency(currency))}
+				selectedCurrency={selectedCurrency}
+				currencies={currencies}
+			/>
+		);
 	}
 }
 
 function mapStateToProps(state) {
 	const { currencies } = state;
-
 	return {
 		currencies,
 	};

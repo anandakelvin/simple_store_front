@@ -13,8 +13,8 @@ export const currenciesSlice = createSlice({
 	initialState,
 	name: "currencies",
 	reducers: {
-		setCurrencies(state, action) {
-			state.value = action.payload;
+		setSelectedCurrency(state, action) {
+			state.selectedCurrency = action.payload;
 		},
 	},
 	extraReducers(builder) {
@@ -26,6 +26,8 @@ export const currenciesSlice = createSlice({
 				state.status = "succeeded";
 				state.error = null;
 				state.value = action.payload.data.currencies;
+				state.selectedCurrency =
+					state.selectedCurrency || action.payload.data.currencies[0];
 			})
 			.addCase(fetchCurrencies.rejected, function (state, action) {
 				state.status = "failed";
@@ -42,5 +44,5 @@ export const fetchCurrencies = createAsyncThunk(
 	}
 );
 
-export const { setCurrencies } = currenciesSlice.actions;
+export const { setSelectedCurrency } = currenciesSlice.actions;
 export default currenciesSlice.reducer;
