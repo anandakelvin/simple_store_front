@@ -12,7 +12,8 @@ export default class Category extends React.Component {
 const Li = styled.li`
 	cursor: pointer;
 	padding: 20px;
-	border: 3px solid white;
+	border-top: 2px solid transparent;
+	border-bottom: 2px solid transparent;
 	font-weight: 400;
 	text-align: center;
 	list-style-type: none;
