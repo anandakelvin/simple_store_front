@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import Categories from "../composite/Categories";
 import Logo from "../../assets/logo.svg";
-import Currencies from "../composite/Currencies";
 import CurrenciesContainer from "../container/CurrenciesContainer";
 
 export default class Navbar extends React.Component {

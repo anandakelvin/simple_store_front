@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import Currency from "../simple/Currency";
 import { BiChevronDown, BiChevronUp } from "react-icons/bi";
-import { isEqual } from "lodash";
 
 export default class Currencies extends React.Component {
 	constructor(props) {
