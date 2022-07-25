@@ -10,13 +10,13 @@ export default class Page extends React.Component {
 				<header>
 					<Navbar />
 				</header>
-				<Body>{children}</Body>
+				<Content>{children}</Content>
 			</>
 		);
 	}
 }
 
-const Body = styled.body`
+const Content = styled.div`
 	margin-left: auto;
 	margin-right: auto;
 	max-width: 1024px;
