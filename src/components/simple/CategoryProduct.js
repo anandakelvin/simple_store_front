@@ -1,5 +1,8 @@
+import { find } from "lodash";
 import React from "react";
+import { BeatLoader } from "react-spinners";
 import styled from "styled-components";
+import CurrenciesContainer from "../container/CurrenciesContainer";
 
 export default class CategoryProduct extends React.Component {
 	render() {
@@ -12,7 +15,20 @@ export default class CategoryProduct extends React.Component {
 				<Image src={gallery[0]} />
 				<Gap />
 				<ProductBrandName>{`${brand} ${name}`}</ProductBrandName>
-				<ProductPrice>{`${prices[0].currency.symbol}${prices[0].amount}`}</ProductPrice>
+				<CurrenciesContainer>
+					{({ selectedCurrency, status }) => {
+						if (status === "succeeded") {
+							const price = find(
+								prices,
+								(e) => e.currency.symbol === selectedCurrency.symbol
+							);
+							return (
+								<ProductPrice>{`${price.currency.symbol}${price.amount}`}</ProductPrice>
+							);
+						}
+						return <BeatLoader />;
+					}}
+				</CurrenciesContainer>
 			</Button>
 		);
 	}
