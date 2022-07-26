@@ -4,7 +4,6 @@ import {
 	fetchCurrencies,
 	setSelectedCurrency,
 } from "../../features/currencies/currenciesSlice";
-import Currencies from "../composite/Currencies";
 
 class CurrenciesContainer extends React.Component {
 	componentDidMount() {
@@ -12,15 +11,25 @@ class CurrenciesContainer extends React.Component {
 	}
 
 	render() {
-		const { value: currencies, selectedCurrency } = this.props.currencies;
+		const { value, selectedCurrency, status, error } = this.props.currencies;
 		const dispatch = this.props.dispatch;
 
 		return (
-			<Currencies
-				onSelect={(currency) => dispatch(setSelectedCurrency(currency))}
-				selectedCurrency={selectedCurrency}
-				currencies={currencies}
-			/>
+			// <Currencies
+			// 	onSelect={(currency) => dispatch(setSelectedCurrency(currency))}
+			// 	selectedCurrency={selectedCurrency}
+			// 	currencies={value}
+			// />
+			<>
+				{this.props.children({
+					value,
+					selectedCurrency,
+					status,
+					error,
+					setSelectedCurrency: (currency) =>
+						dispatch(setSelectedCurrency(currency)),
+				})}
+			</>
 		);
 	}
 }

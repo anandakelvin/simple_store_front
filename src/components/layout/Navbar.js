@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Categories from "../composite/Categories";
 import Logo from "../../assets/logo.svg";
-import CurrenciesContainer from "../container/CurrenciesContainer";
+import Currencies from "../composite/Currencies";
 
 export default class Navbar extends React.Component {
 	render() {
@@ -15,13 +15,7 @@ export default class Navbar extends React.Component {
 					<img src={Logo} alt="Logo" />
 				</LogoWrapper>
 				<RightSideWrapper>
-					<CurrenciesContainer />
-					{/* <Currencies
-						currencies={[
-							{ symbol: "$", label: "USD" },
-							{ symbol: "$", label: "USD" },
-						]}
-					/> */}
+					<Currencies />
 				</RightSideWrapper>
 			</Nav>
 		);
