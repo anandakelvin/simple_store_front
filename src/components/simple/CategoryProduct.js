@@ -11,7 +11,7 @@ export default class CategoryProduct extends React.Component {
 
 		return (
 			<Button>
-				{!inStock && <UnavailableOverlay>Not in stock</UnavailableOverlay>}
+				{!inStock && <UnavailableOverlay>OUT OF STOCK</UnavailableOverlay>}
 				<Image src={gallery[0]} />
 				<Gap />
 				<ProductBrandName>{`${brand} ${name}`}</ProductBrandName>
@@ -42,8 +42,9 @@ const UnavailableOverlay = styled.div`
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	opacity: 0.5;
-	background-color: white;
+	background-color: rgba(255, 255, 255, 0.5);
+	color: gray;
+	font-size: 16px;
 `;
 
 const Gap = styled.div`
