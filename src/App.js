@@ -24,7 +24,7 @@ function App() {
 							</Switch>
 						);
 					}
-					return <div></div>;
+					return <></>;
 				}}
 			</CategoriesContainer>
 		</>

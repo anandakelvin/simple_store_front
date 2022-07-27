@@ -1,8 +1,10 @@
 import React from "react";
+import { Redirect, Route, Switch } from "react-router-dom";
 import styled from "styled-components";
 import CategoryProducts from "../composite/CategoryProducts";
 import CategoryContainer from "../container/CategoryContainer";
 import Page from "../layout/Page";
+import ProductRoute from "./ProductRoute";
 
 export default class CategoryRoute extends React.Component {
 	render() {
@@ -10,16 +12,31 @@ export default class CategoryRoute extends React.Component {
 		const { categoryName: name } = match.params;
 		return (
 			<CategoryContainer categoryName={name}>
-				{({ value, status }) => (
-					<Page isLoading={status === "loading"}>
-						{status === "succeeded" && (
-							<>
-								<Title>{value.name.capitalize()}</Title>
-								<CategoryProducts products={value.products} />
-							</>
-						)}
-					</Page>
-				)}
+				{({ value, status }) => {
+					if (status === "succeeded") {
+						if (value === null) {
+							return <Redirect to={"/"} />;
+						}
+						return (
+							<Switch>
+								<Route exact path={match.path}>
+									<Page>
+										<Title>{value.name.capitalize()}</Title>
+										<CategoryProducts products={value.products} />
+									</Page>
+								</Route>
+								<Route
+									path={`${match.path}/products/:productId`}
+									render={(routeProps) => <ProductRoute {...routeProps} />}
+								/>
+								<Route path="*">
+									<Redirect to={"/"} />
+								</Route>
+							</Switch>
+						);
+					}
+					return <Page isLoading={true} />;
+				}}
 			</CategoryContainer>
 		);
 	}
