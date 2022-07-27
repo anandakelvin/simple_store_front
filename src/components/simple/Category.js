@@ -19,7 +19,6 @@ class Category extends React.Component {
 export default Category = withRouter(Category);
 
 const Li = styled.li`
-	cursor: pointer;
 	padding: 20px;
 	border-top: 2px solid transparent;
 	border-bottom: 2px solid transparent;
