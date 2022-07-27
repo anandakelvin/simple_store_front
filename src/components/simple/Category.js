@@ -6,11 +6,11 @@ class Category extends React.Component {
 	render() {
 		const { category, location } = this.props;
 		const { name } = category;
+
+		const isActive = location.pathname.split("/")[2] === name;
 		return (
 			<Link to={`/categories/${name}`}>
-				<Li isActive={location.pathname.includes(`/categories/${name}`)}>
-					{name.toUpperCase()}
-				</Li>
+				<Li isActive={isActive}>{name.toUpperCase()}</Li>
 			</Link>
 		);
 	}
