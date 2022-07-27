@@ -19,7 +19,7 @@ export default class ProductRoute extends React.Component {
 							);
 						}
 						return (
-							<PageContent isLoading={status === "loading"}>
+							<PageContent>
 								<Title>{value.name.capitalize()}</Title>
 							</PageContent>
 						);
