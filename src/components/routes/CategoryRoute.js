@@ -15,7 +15,7 @@ export default class CategoryRoute extends React.Component {
 				{({ value, status }) => {
 					if (status === "succeeded") {
 						if (value === null) {
-							return <Redirect to={"/"} />;
+							return <Page.Centered>Category is not found.</Page.Centered>;
 						}
 						return (
 							<Switch>
@@ -29,7 +29,9 @@ export default class CategoryRoute extends React.Component {
 									path={`${match.path}/products/:productId`}
 									render={(routeProps) => <ProductRoute {...routeProps} />}
 								/>
-								<Redirect to={match.url} />
+								<Route path="*">
+									<Redirect to={`/categories/${name}`} />
+								</Route>
 							</Switch>
 						);
 					}

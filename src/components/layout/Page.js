@@ -3,11 +3,23 @@ import { BeatLoader } from "react-spinners";
 import styled from "styled-components";
 
 export default class Page extends React.Component {
+	static Centered({ children }) {
+		return <Centered>{children}</Centered>;
+	}
+
 	render() {
 		const { children, isLoading } = this.props;
 		return <Content>{isLoading ? <BeatLoader /> : children}</Content>;
 	}
 }
+
+const Centered = styled.div`
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+`;
 
 const Content = styled.div`
 	margin-left: auto;
