@@ -1,16 +1,18 @@
 import { find } from "lodash";
 import React from "react";
+import { withRouter } from "react-router-dom";
 import { BeatLoader } from "react-spinners";
 import styled from "styled-components";
 import CurrenciesContainer from "../container/CurrenciesContainer";
 
-export default class CategoryProduct extends React.Component {
+class CategoryProduct extends React.Component {
 	render() {
-		const { product } = this.props;
-		const { gallery, name, brand, prices, inStock } = product;
-
+		const { product, history, location } = this.props;
+		const { id, name, gallery, brand, prices, inStock } = product;
 		return (
-			<Button>
+			<Button
+				onClick={() => history.push(`${location.pathname}/products/${id}`)}
+			>
 				{!inStock && <UnavailableOverlay>OUT OF STOCK</UnavailableOverlay>}
 				<Image src={gallery[0]} />
 				<Gap />
@@ -33,6 +35,8 @@ export default class CategoryProduct extends React.Component {
 		);
 	}
 }
+
+export default CategoryProduct = withRouter(CategoryProduct);
 
 const UnavailableOverlay = styled.div`
 	position: absolute;
