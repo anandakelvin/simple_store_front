@@ -5,7 +5,7 @@ export default class Currency extends React.Component {
 	render() {
 		const { currency, onClick } = this.props;
 		return (
-			<A href="#" onClick={() => onClick(currency)}>
+			<A onClick={() => onClick(currency)}>
 				<div>{currency.symbol}</div>
 				<div>{currency.label}</div>
 			</A>
