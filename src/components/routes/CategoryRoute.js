@@ -3,7 +3,7 @@ import { Redirect, Route, Switch } from "react-router-dom";
 import styled from "styled-components";
 import CategoryProducts from "../composite/CategoryProducts";
 import CategoryContainer from "../container/CategoryContainer";
-import Page from "../layout/Page";
+import PageContent from "../layout/Page";
 import ProductRoute from "./ProductRoute";
 
 export default class CategoryRoute extends React.Component {
@@ -15,15 +15,19 @@ export default class CategoryRoute extends React.Component {
 				{({ value, status }) => {
 					if (status === "succeeded") {
 						if (value === null) {
-							return <Page.Centered>Category is not found.</Page.Centered>;
+							return (
+								<PageContent.Centered>
+									Category is not found.
+								</PageContent.Centered>
+							);
 						}
 						return (
 							<Switch>
 								<Route exact path={match.path}>
-									<Page>
+									<PageContent>
 										<Title>{value.name.capitalize()}</Title>
 										<CategoryProducts products={value.products} />
-									</Page>
+									</PageContent>
 								</Route>
 								<Route
 									path={`${match.path}/products/:productId`}
@@ -35,7 +39,7 @@ export default class CategoryRoute extends React.Component {
 							</Switch>
 						);
 					}
-					return <Page isLoading={true} />;
+					return <PageContent isLoading={true} />;
 				}}
 			</CategoryContainer>
 		);

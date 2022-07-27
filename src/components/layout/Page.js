@@ -2,7 +2,7 @@ import React from "react";
 import { BeatLoader } from "react-spinners";
 import styled from "styled-components";
 
-export default class Page extends React.Component {
+export default class PageContent extends React.Component {
 	static Centered({ children }) {
 		return <Centered>{children}</Centered>;
 	}

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import ProductContainer from "../container/ProductContainer";
-import Page from "../layout/Page";
+import PageContent from "../layout/Page";
 
 export default class ProductRoute extends React.Component {
 	render() {
@@ -12,15 +12,19 @@ export default class ProductRoute extends React.Component {
 				{({ value, status }) => {
 					if (status === "succeeded") {
 						if (value === null) {
-							return <Page.Centered>Product is not found.</Page.Centered>;
+							return (
+								<PageContent.Centered>
+									Product is not found.
+								</PageContent.Centered>
+							);
 						}
 						return (
-							<Page isLoading={status === "loading"}>
+							<PageContent isLoading={status === "loading"}>
 								<Title>{value.name.capitalize()}</Title>
-							</Page>
+							</PageContent>
 						);
 					}
-					return <Page isLoading={true} />;
+					return <PageContent isLoading={true} />;
 				}}
 			</ProductContainer>
 		);
