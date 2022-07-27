@@ -4,7 +4,7 @@ import styled from "styled-components";
 import ProductContainer from "../container/ProductContainer";
 import Page from "../layout/Page";
 
-export default class CategoryRoute extends React.Component {
+export default class ProductRoute extends React.Component {
 	render() {
 		const { match } = this.props;
 		const { productId: id, categoryName } = match.params;
