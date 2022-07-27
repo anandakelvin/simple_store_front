@@ -18,9 +18,7 @@ function App() {
 									path={"/categories/:categoryName"}
 									render={(routeProps) => <CategoryRoute {...routeProps} />}
 								/>
-								<Route path="*">
-									<Redirect to={"/categories/" + value[0].name} />
-								</Route>
+								<Redirect to={"/categories/" + value[0].name} />
 							</Switch>
 						);
 					}

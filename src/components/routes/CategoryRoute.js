@@ -29,9 +29,7 @@ export default class CategoryRoute extends React.Component {
 									path={`${match.path}/products/:productId`}
 									render={(routeProps) => <ProductRoute {...routeProps} />}
 								/>
-								<Route path="*">
-									<Redirect to={"/"} />
-								</Route>
+								<Redirect to={match.url} />
 							</Switch>
 						);
 					}

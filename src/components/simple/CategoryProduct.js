@@ -7,12 +7,10 @@ import CurrenciesContainer from "../container/CurrenciesContainer";
 
 class CategoryProduct extends React.Component {
 	render() {
-		const { product, history, location } = this.props;
+		const { product, history, match } = this.props;
 		const { id, name, gallery, brand, prices, inStock } = product;
 		return (
-			<Button
-				onClick={() => history.push(`${location.pathname}/products/${id}`)}
-			>
+			<Button onClick={() => history.push(`${match.url}/products/${id}`)}>
 				{!inStock && <UnavailableOverlay>OUT OF STOCK</UnavailableOverlay>}
 				<Image src={gallery[0]} />
 				<Gap />
