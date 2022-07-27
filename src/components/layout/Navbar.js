@@ -8,9 +8,7 @@ export default class Navbar extends React.Component {
 	render() {
 		return (
 			<Nav>
-				<Categories
-					categories={[{ name: "men" }, { name: "men" }, { name: "men" }]}
-				/>
+				<Categories />
 				<LogoWrapper>
 					<img src={Logo} alt="Logo" />
 				</LogoWrapper>
@@ -34,6 +32,7 @@ const LogoWrapper = styled.div`
 `;
 
 const Nav = styled.nav`
+	height: 68px;
 	margin-left: auto;
 	margin-right: auto;
 	padding-left: 20px;

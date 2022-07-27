@@ -4,20 +4,6 @@ const CATEGORIES = gql`
 	query getCategories {
 		categories {
 			name
-			products {
-				id
-				name
-				gallery
-				inStock
-				brand
-				prices {
-					amount
-					currency {
-						label
-						symbol
-					}
-				}
-			}
 		}
 	}
 `;

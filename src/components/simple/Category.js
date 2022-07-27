@@ -1,13 +1,22 @@
 import React from "react";
+import { Link, withRouter } from "react-router-dom";
 import styled from "styled-components";
 
-export default class Category extends React.Component {
+class Category extends React.Component {
 	render() {
-		const { category } = this.props;
+		const { category, location } = this.props;
 		const { name } = category;
-		return <Li>{name.toUpperCase()}</Li>;
+		return (
+			<Link to={`/categories/${name}`}>
+				<Li isActive={location.pathname.includes(`/categories/${name}`)}>
+					{name.toUpperCase()}
+				</Li>
+			</Link>
+		);
 	}
 }
+
+export default Category = withRouter(Category);
 
 const Li = styled.li`
 	cursor: pointer;
@@ -17,6 +26,9 @@ const Li = styled.li`
 	font-weight: 400;
 	text-align: center;
 	list-style-type: none;
+
+	border-bottom-color: ${(props) => props.isActive && "#00d172"};
+	color: ${(props) => props.isActive && "#00d172"};
 
 	:hover {
 		border-bottom-color: #00d172;

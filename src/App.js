@@ -1,14 +1,33 @@
-import { Route, Switch } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
+import CategoriesContainer from "./components/container/CategoriesContainer";
+import Navbar from "./components/layout/Navbar";
 import CategoryRoute from "./components/routes/CategoryRoute";
-import * as CategoryStories from "./components/simple/Category.stories";
 
 function App() {
 	return (
-		<Switch>
-			<Route path="/">
-				<CategoryRoute category={CategoryStories.Default.args.category} />
-			</Route>
-		</Switch>
+		<>
+			<header>
+				<Navbar />
+			</header>
+			<CategoriesContainer>
+				{({ value, status }) => {
+					if (status === "succeeded") {
+						return (
+							<Switch>
+								<Route
+									path={"/categories/:categoryName"}
+									render={(routeProps) => <CategoryRoute {...routeProps} />}
+								/>
+								<Route path="*">
+									<Redirect to={"/categories/" + value[0].name} />
+								</Route>
+							</Switch>
+						);
+					}
+					return <div></div>;
+				}}
+			</CategoriesContainer>
+		</>
 	);
 }
 

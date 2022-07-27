@@ -1,23 +1,30 @@
 import React from "react";
 import styled from "styled-components";
 import CategoryProducts from "../composite/CategoryProducts";
+import CategoryContainer from "../container/CategoryContainer";
 import Page from "../layout/Page";
 
 export default class CategoryRoute extends React.Component {
 	render() {
-		const { category } = this.props;
-		const { name, products } = category;
+		const { match } = this.props;
+		const { categoryName: name } = match.params;
 		return (
-			<Page>
-				<Title>{name.capitalize()}</Title>
-				<CategoryProducts products={products} />
-			</Page>
+			<CategoryContainer categoryName={name}>
+				{({ value, status }) => (
+					<Page isLoading={status === "loading"}>
+						{status === "succeeded" && (
+							<>
+								<Title>{value.name.capitalize()}</Title>
+								<CategoryProducts products={value.products} />
+							</>
+						)}
+					</Page>
+				)}
+			</CategoryContainer>
 		);
 	}
 }
 
 const Title = styled.div`
-	padding-top: 30px;
-	padding-bottom: 30px;
 	font-size: 40px;
 `;
