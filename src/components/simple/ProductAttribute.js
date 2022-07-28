@@ -19,7 +19,11 @@ export default class ProductAttribute extends React.Component {
 								</SwatchItemWrapper>
 							);
 						}
-						return <Item key={el.id}>{el.displayValue}</Item>;
+						return (
+							<Item key={el.id} isSelected={el.id === idOfSelected}>
+								{el.displayValue}
+							</Item>
+						);
 					})}
 				</ItemsWrapper>
 			</Div>
@@ -27,25 +31,28 @@ export default class ProductAttribute extends React.Component {
 	}
 }
 
-const SwatchItemWrapper = styled.div`
+const SwatchItemWrapper = styled.button`
 	border: 1px solid transparent;
 	border-color: ${(props) => props.isSelected && "#00d172"};
 `;
 
 const SwatchItem = styled.div`
-	height: 20px;
+	height: 25px;
 	aspect-ratio: 1;
 	border: 1px solid transparent;
 	margin: 1px;
 	background-color: ${(props) => props.value};
 `;
 
-const Item = styled.div`
+const Item = styled.button`
 	padding: 8px;
 	padding-top: 5px;
 	padding-bottom: 5px;
 	border: 1px solid black;
-	font-size: 14px;
+	font-size: 12px;
+
+	color: ${(props) => props.isSelected && "white"};
+	background-color: ${(props) => props.isSelected && "black"};
 `;
 
 const ItemsWrapper = styled.div`
