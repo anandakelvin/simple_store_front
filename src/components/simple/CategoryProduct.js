@@ -23,7 +23,7 @@ class CategoryProduct extends React.Component {
 								(e) => e.currency.symbol === selectedCurrency.symbol
 							);
 							return (
-								<ProductPrice>{`${price.currency.symbol}${price.amount}`}</ProductPrice>
+								<ProductPrice>{`${price?.currency.symbol}${price?.amount}`}</ProductPrice>
 							);
 						}
 						return <BeatLoader />;
