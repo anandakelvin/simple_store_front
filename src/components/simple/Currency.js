@@ -14,6 +14,7 @@ export default class Currency extends React.Component {
 }
 
 const A = styled.a`
+	cursor: pointer;
 	padding: 10px;
 	padding-left: 20px;
 	padding-right: 20px;
