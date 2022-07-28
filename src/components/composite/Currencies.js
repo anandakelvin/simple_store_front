@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Currency from "../simple/Currency";
 import { BiChevronDown, BiChevronUp } from "react-icons/bi";
 import CurrenciesContainer from "../container/CurrenciesContainer";
+import { BeatLoader } from "react-spinners";
 
 export default class Currencies extends React.Component {
 	constructor(props) {
@@ -39,29 +40,32 @@ export default class Currencies extends React.Component {
 	render() {
 		return (
 			<CurrenciesContainer>
-				{({ value, selectedCurrency, setSelectedCurrency }) => {
-					return (
-						<RelativeWrapper ref={this.ref}>
-							<Button onClick={this.handleToggleisOpened}>
-								{selectedCurrency?.symbol}
-								{this.state.isOpened ? <BiChevronUp /> : <BiChevronDown />}
-							</Button>
-							{this.state.isOpened && (
-								<ItemsWrapper>
-									{value.map((el, index) => (
-										<Currency
-											key={index}
-											onClick={(currency) => {
-												this.handleToggleisOpened();
-												setSelectedCurrency(currency);
-											}}
-											currency={el}
-										/>
-									))}
-								</ItemsWrapper>
-							)}
-						</RelativeWrapper>
-					);
+				{({ value, selectedCurrency, setSelectedCurrency, status }) => {
+					if (status === "succeeded") {
+						return (
+							<RelativeWrapper ref={this.ref}>
+								<Button onClick={this.handleToggleisOpened}>
+									{selectedCurrency?.symbol}
+									{this.state.isOpened ? <BiChevronUp /> : <BiChevronDown />}
+								</Button>
+								{this.state.isOpened && (
+									<ItemsWrapper>
+										{value.map((el, index) => (
+											<Currency
+												key={index}
+												onClick={(currency) => {
+													this.handleToggleisOpened();
+													setSelectedCurrency(currency);
+												}}
+												currency={el}
+											/>
+										))}
+									</ItemsWrapper>
+								)}
+							</RelativeWrapper>
+						);
+					}
+					return <BeatLoader />;
 				}}
 			</CurrenciesContainer>
 		);
