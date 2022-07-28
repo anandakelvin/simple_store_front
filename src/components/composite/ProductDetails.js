@@ -129,15 +129,16 @@ const Info = styled.div`
 `;
 
 const LargeImage = styled.img`
+	height: 100%;
 	object-fit: contain;
-	max-height: 80vh;
+	object-position: top;
 `;
 
 const LargeImageWrapper = styled.div`
 	display: flex;
 	justify-content: center;
 	margin-left: 60px;
-	margin-right: 60px;
+	max-height: 80vh;
 `;
 
 const Image = styled.img`
