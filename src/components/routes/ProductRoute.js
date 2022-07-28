@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import ProductDetails from "../composite/ProductDetails";
 import ProductContainer from "../container/ProductContainer";
 import PageContent from "../layout/Page";
 
@@ -20,7 +21,7 @@ export default class ProductRoute extends React.Component {
 						}
 						return (
 							<PageContent>
-								<Title>{value.name.capitalize()}</Title>
+								<ProductDetails product={value} />
 							</PageContent>
 						);
 					}
