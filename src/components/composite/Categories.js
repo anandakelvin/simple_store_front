@@ -30,4 +30,5 @@ export default class Categories extends React.Component {
 const Ul = styled.ul`
 	display: flex;
 	gap: 5px;
+	align-items: center;
 `;
