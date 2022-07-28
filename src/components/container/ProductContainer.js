@@ -1,6 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchProduct } from "../../features/product/productSlice";
+import {
+	fetchProduct,
+	selectAttribute,
+} from "../../features/product/productSlice";
 
 class ProductContainer extends React.Component {
 	componentDidMount() {
@@ -13,12 +16,16 @@ class ProductContainer extends React.Component {
 	}
 
 	render() {
-		const { value, status, error } = this.props.product;
+		const { value, selectedAttributes, status, error } = this.props.product;
+		const dispatch = this.props.dispatch;
 
 		return this.props.children({
 			value,
+			selectedAttributes,
 			status,
 			error,
+			selectAttribute: (attributeItem) =>
+				dispatch(selectAttribute(attributeItem)),
 		});
 	}
 }

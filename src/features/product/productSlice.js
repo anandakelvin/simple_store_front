@@ -6,11 +6,20 @@ const initialState = {
 	value: null,
 	status: "idle",
 	error: null,
+	selectedAttributes: [],
 };
 
 export const productSlice = createSlice({
 	initialState,
 	name: "product",
+	reducers: {
+		selectAttribute(state, action) {
+			const selectedAttribute = state.selectedAttributes.find(
+				(el) => el.name === action.payload.name
+			);
+			selectedAttribute.selectedItem = action.payload.selectedItem;
+		},
+	},
 	extraReducers(builder) {
 		builder
 			.addCase(fetchProduct.pending, function (state, action) {
@@ -20,6 +29,14 @@ export const productSlice = createSlice({
 				state.status = "succeeded";
 				state.error = null;
 				state.value = action.payload.data.product;
+				state.selectedAttributes =
+					// state.value.id === action.payload.data.product.id
+					// 	? state.selectedAttributes
+					// 	:
+					action.payload.data.product.attributes.map((el) => ({
+						name: el.name,
+						selectedItem: el.items[0].id,
+					}));
 			})
 			.addCase(fetchProduct.rejected, function (state, action) {
 				state.status = "failed";
@@ -39,4 +56,5 @@ export const fetchProduct = createAsyncThunk(
 	}
 );
 
+export const { selectAttribute } = productSlice.actions;
 export default productSlice.reducer;

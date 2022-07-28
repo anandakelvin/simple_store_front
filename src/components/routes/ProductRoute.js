@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 import ProductDetails from "../composite/ProductDetails";
 import ProductContainer from "../container/ProductContainer";
 import PageContent from "../layout/Page";
@@ -10,7 +9,7 @@ export default class ProductRoute extends React.Component {
 		const { productId: id } = match.params;
 		return (
 			<ProductContainer productId={id}>
-				{({ value, status }) => {
+				{({ value, selectedAttributes, selectAttribute, status }) => {
 					if (status === "succeeded") {
 						if (value === null) {
 							return (
@@ -21,7 +20,11 @@ export default class ProductRoute extends React.Component {
 						}
 						return (
 							<PageContent>
-								<ProductDetails product={value} />
+								<ProductDetails
+									product={value}
+									selectedAttributes={selectedAttributes}
+									selectAttribute={selectAttribute}
+								/>
 							</PageContent>
 						);
 					}
@@ -31,8 +34,3 @@ export default class ProductRoute extends React.Component {
 		);
 	}
 }
-
-const Title = styled.div`
-	font-size: 40px;
-	margin-bottom: 20px;
-`;

@@ -3,10 +3,11 @@ import styled from "styled-components";
 
 export default class ProductAttribute extends React.Component {
 	render() {
-		const { name, type, items, idOfSelected } = this.props.attribute;
+		const { attribute, idOfSelected, onSelect } = this.props;
+		const { name, type, items } = attribute;
 		return (
 			<Div>
-				<Label>{name}</Label>
+				<Label>{name}:</Label>
 				<ItemsWrapper>
 					{items.map((el) => {
 						if (type === "swatch") {
@@ -14,13 +15,18 @@ export default class ProductAttribute extends React.Component {
 								<SwatchItemWrapper
 									key={el.id}
 									isSelected={el.id === idOfSelected}
+									onClick={() => onSelect({ name, selectedItem: el.id })}
 								>
 									<SwatchItem value={el.value} />
 								</SwatchItemWrapper>
 							);
 						}
 						return (
-							<Item key={el.id} isSelected={el.id === idOfSelected}>
+							<Item
+								key={el.id}
+								isSelected={el.id === idOfSelected}
+								onClick={() => onSelect({ name, selectedItem: el.id })}
+							>
 								{el.displayValue}
 							</Item>
 						);

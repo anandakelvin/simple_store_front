@@ -8,8 +8,9 @@ import parse from "html-react-parser";
 
 export default class ProductDetails extends React.Component {
 	render() {
+		const { product, selectedAttributes, selectAttribute } = this.props;
 		const { name, inStock, description, gallery, attributes, brand, prices } =
-			this.props.product;
+			product;
 		return (
 			<Div>
 				<Images>
@@ -24,11 +25,19 @@ export default class ProductDetails extends React.Component {
 					<ProductBrand>{brand}</ProductBrand>
 					<ProductName>{name}</ProductName>
 					<ProductAttributes>
-						{attributes.map((el) => (
-							<ProductAttribute key={el.name} attribute={el} />
+						{attributes.map((attribute) => (
+							<ProductAttribute
+								key={attribute.name}
+								attribute={attribute}
+								onSelect={selectAttribute}
+								idOfSelected={
+									selectedAttributes.find((el) => el.name === attribute.name)
+										.selectedItem
+								}
+							/>
 						))}
 					</ProductAttributes>
-					<Label>Price</Label>
+					<Label>Price:</Label>
 					<CurrenciesContainer>
 						{({ selectedCurrency, status }) => {
 							if (status === "succeeded") {
@@ -106,7 +115,6 @@ const Info = styled.div`
 const LargeImage = styled.img`
 	object-fit: contain;
 	max-height: 80vh;
-	border: 1px solid black;
 `;
 
 const LargeImageWrapper = styled.div`
@@ -118,7 +126,6 @@ const Image = styled.img`
 	object-fit: contain;
 	width: 100%;
 	aspect-ratio: 1;
-	border: 1px solid black;
 `;
 
 const Images = styled.div`
