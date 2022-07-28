@@ -7,6 +7,19 @@ import { BeatLoader } from "react-spinners";
 import parse from "html-react-parser";
 
 export default class ProductDetails extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			selectedImage: this.props.product.gallery[0],
+		};
+
+		this.handleSelectImage = this.handleSelectImage.bind(this);
+	}
+
+	handleSelectImage(image) {
+		this.setState({ selectedImage: image });
+	}
+
 	render() {
 		const { product, selectedAttributes, selectAttribute } = this.props;
 		const { name, inStock, description, gallery, attributes, brand, prices } =
@@ -15,11 +28,13 @@ export default class ProductDetails extends React.Component {
 			<Div>
 				<Images>
 					{gallery.map((el) => (
-						<Image key={el} src={el} />
+						<button onClick={() => this.handleSelectImage(el)}>
+							<Image key={el} src={el} />
+						</button>
 					))}
 				</Images>
 				<LargeImageWrapper>
-					<LargeImage src={gallery[0]} />
+					<LargeImage src={this.state.selectedImage} />
 				</LargeImageWrapper>
 				<Info>
 					<ProductBrand>{brand}</ProductBrand>
