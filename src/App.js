@@ -1,6 +1,7 @@
 import { Redirect, Route, Switch } from "react-router-dom";
 import CategoriesContainer from "./components/container/CategoriesContainer";
 import Navbar from "./components/layout/Navbar";
+import CartRoute from "./components/routes/CartRoute";
 import CategoryRoute from "./components/routes/CategoryRoute";
 
 function App() {
@@ -14,6 +15,10 @@ function App() {
 					if (status === "succeeded") {
 						return (
 							<Switch>
+								<Route
+									path={"/cart"}
+									render={(routeProps) => <CartRoute {...routeProps} />}
+								/>
 								<Route
 									path={"/categories/:categoryName"}
 									render={(routeProps) => <CategoryRoute {...routeProps} />}

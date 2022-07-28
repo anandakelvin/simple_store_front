@@ -1,10 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import ProductAttribute from "../simple/ProductAttribute";
-import CurrenciesContainer from "../container/CurrenciesContainer";
-import { find } from "lodash";
-import { BeatLoader } from "react-spinners";
 import parse from "html-react-parser";
+import Price from "../simple/Price";
 
 export default class ProductDetails extends React.Component {
 	constructor(props) {
@@ -28,7 +26,7 @@ export default class ProductDetails extends React.Component {
 			<Div>
 				<Images>
 					{gallery.map((el) => (
-						<button onClick={() => this.handleSelectImage(el)}>
+						<button key={el} onClick={() => this.handleSelectImage(el)}>
 							<Image key={el} src={el} />
 						</button>
 					))}
@@ -53,20 +51,9 @@ export default class ProductDetails extends React.Component {
 						))}
 					</ProductAttributes>
 					<Label>Price:</Label>
-					<CurrenciesContainer>
-						{({ selectedCurrency, status }) => {
-							if (status === "succeeded") {
-								const price = find(
-									prices,
-									(e) => e.currency.symbol === selectedCurrency.symbol
-								);
-								return (
-									<Price>{`${price?.currency.symbol}${price?.amount}`}</Price>
-								);
-							}
-							return <BeatLoader />;
-						}}
-					</CurrenciesContainer>
+					<PriceDiv>
+						<Price prices={prices} />
+					</PriceDiv>
 					<CallToActionButton disabled={!inStock}>
 						ADD TO CART
 					</CallToActionButton>
@@ -93,7 +80,7 @@ const CallToActionButton = styled.button`
 	opacity: ${(props) => props.disabled && 0.5};
 `;
 
-const Price = styled.div`
+const PriceDiv = styled.div`
 	font-weight: bold;
 	font-size: 18px;
 `;

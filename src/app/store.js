@@ -1,4 +1,5 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import cartSlice from "../features/cart/cartSlice";
 import categoriesSlice from "../features/categories/categoriesSlice";
 import categorySlice from "../features/category/categorySlice";
 import currenciesReducer from "../features/currencies/currenciesSlice";
@@ -10,5 +11,6 @@ export default configureStore({
 		categories: categoriesSlice,
 		category: categorySlice,
 		product: productSlice,
+		cart: cartSlice,
 	}),
 });

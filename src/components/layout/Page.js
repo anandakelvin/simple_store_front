@@ -18,7 +18,7 @@ const Centered = styled.div`
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	height: 100vh;
+	height: 70vh;
 `;
 
 const Content = styled.div`
@@ -27,6 +27,6 @@ const Content = styled.div`
 	max-width: 1024px;
 	padding: 20px;
 	padding-top: 30px;
-	padding-bottom: 30px;
+	padding-bottom: 60px;
 	background-color: white;
 `;

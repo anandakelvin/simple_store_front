@@ -25,7 +25,7 @@ export default class CategoryRoute extends React.Component {
 							<Switch>
 								<Route exact path={match.path}>
 									<PageContent>
-										<Title>{value.name.capitalize()}</Title>
+										<Title>{value.name}</Title>
 										<CategoryProducts products={value.products} />
 									</PageContent>
 								</Route>
@@ -49,4 +49,5 @@ export default class CategoryRoute extends React.Component {
 const Title = styled.div`
 	font-size: 40px;
 	margin-bottom: 20px;
+	text-transform: capitalize;
 `;
