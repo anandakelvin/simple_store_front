@@ -69,6 +69,7 @@ const Description = styled.div`
 const CallToActionButton = styled.button`
 	padding: 10px;
 	width: 100%;
+	font-size: 14px;
 	background-color: #00d172;
 	color: white;
 	margin-top: 40px;
@@ -108,8 +109,8 @@ const ProductAttributes = styled.div`
 `;
 
 const Info = styled.div`
-	padding-left: 60px;
-	padding-right: 60px;
+	margin-left: 60px;
+	margin-right: 60px;
 `;
 
 const LargeImage = styled.img`
@@ -120,6 +121,8 @@ const LargeImage = styled.img`
 const LargeImageWrapper = styled.div`
 	display: flex;
 	justify-content: center;
+	margin-left: 60px;
+	margin-right: 60px;
 `;
 
 const Image = styled.img`
@@ -136,6 +139,5 @@ const Images = styled.div`
 
 const Div = styled.div`
 	display: grid;
-	gap: 20px;
 	grid-template-columns: 10% 45% 45%;
 `;
