@@ -89,6 +89,7 @@ const Button = styled.button`
 	align-items: center;
 	width: 100%;
 	background-color: white;
+	font-size: 19px;
 `;
 
 const RelativeWrapper = styled.div`

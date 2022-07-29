@@ -4,7 +4,6 @@ import ProductAttribute from "../simple/ProductAttribute";
 import parse from "html-react-parser";
 import Price from "../simple/Price";
 import CartContainer from "../container/CartContainer";
-import { cartAddProduct } from "../../features/cart/cartSlice";
 
 export default class ProductDetails extends React.Component {
 	constructor(props) {
