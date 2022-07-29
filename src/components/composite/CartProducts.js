@@ -10,18 +10,18 @@ export default class CartProducts extends React.Component {
 			cartRemove,
 			selectAttribute,
 			updatePrices,
-			withoutDividers,
+			miniVersion,
 		} = this.props;
 		return (
 			<Div>
 				{cartProducts.map((el, index) => {
 					return (
 						<React.Fragment key={index}>
-							{index === 0 && !withoutDividers && <Divider />}
+							{index === 0 && !miniVersion && <Divider />}
 							<CartProduct
 								cartProduct={el}
-								cartAdd={cartAdd}
-								cartRemove={cartRemove}
+								cartAdd={() => cartAdd({ cartProductIndex: index })}
+								cartRemove={() => cartRemove({ cartProductIndex: index })}
 								selectAttribute={(selectedAttribute) =>
 									selectAttribute({
 										cartProductIndex: index,
@@ -31,8 +31,9 @@ export default class CartProducts extends React.Component {
 								updatePrices={(prices) =>
 									updatePrices({ prices, cartProductIndex: index })
 								}
+								miniVersion={miniVersion}
 							/>
-							{!withoutDividers && <Divider />}
+							{!miniVersion && <Divider />}
 						</React.Fragment>
 					);
 				})}

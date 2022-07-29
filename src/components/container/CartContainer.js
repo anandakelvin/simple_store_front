@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import {
 	reset,
 	updatePrices,
+	cartAddProduct,
 	cartAdd,
 	cartRemove,
 	selectAttribute,
@@ -16,11 +17,11 @@ class CartContainer extends React.Component {
 		return this.props.children({
 			value,
 			reset: () => dispatch(reset()),
-			updatePrices: (updatePricesArg) =>
-				dispatch(updatePrices(updatePricesArg)),
-			cartAdd: (cartProduct) => dispatch(cartAdd(cartProduct)),
-			cartRemove: (cartProduct) => dispatch(cartRemove(cartProduct)),
-			selectAttribute: (cartProduct) => dispatch(selectAttribute(cartProduct)),
+			cartAddProduct: (arg) => dispatch(cartAddProduct(arg)),
+			updatePrices: (arg) => dispatch(updatePrices(arg)),
+			cartAdd: (arg) => dispatch(cartAdd(arg)),
+			cartRemove: (arg) => dispatch(cartRemove(arg)),
+			selectAttribute: (arg) => dispatch(selectAttribute(arg)),
 		});
 	}
 }

@@ -3,11 +3,11 @@ import styled from "styled-components";
 
 export default class ProductAttribute extends React.Component {
 	render() {
-		const { attribute, idOfSelected, onSelect } = this.props;
+		const { attribute, idOfSelected, onSelect, miniVersion } = this.props;
 		const { name, type, items } = attribute;
 		return (
 			<Div>
-				<Label>{name}:</Label>
+				<Label miniVersion={miniVersion}>{name}:</Label>
 				<ItemsWrapper>
 					{items.map((el) => {
 						if (type === "swatch") {
@@ -69,10 +69,10 @@ const ItemsWrapper = styled.div`
 `;
 
 const Label = styled.div`
-	font-weight: bold;
+	font-weight: ${(props) => !props.miniVersion && "bold"};
 	text-transform: uppercase;
 	margin-bottom: 5px;
-	font-size: 14px;
+	font-size: ${(props) => (!props.miniVersion ? "14px" : "12px")};
 `;
 
 const Div = styled.div``;

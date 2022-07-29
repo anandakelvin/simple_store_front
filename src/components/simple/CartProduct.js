@@ -10,8 +10,14 @@ import ProductAttribute from "./ProductAttribute";
 
 export default class CartProduct extends React.Component {
 	render() {
-		const { cartProduct, cartAdd, cartRemove, selectAttribute, updatePrices } =
-			this.props;
+		const {
+			cartProduct,
+			cartAdd,
+			cartRemove,
+			selectAttribute,
+			updatePrices,
+			miniVersion,
+		} = this.props;
 		const { product, selectedAttributes, quantity } = cartProduct;
 		return (
 			<Query
@@ -35,12 +41,12 @@ export default class CartProduct extends React.Component {
 					return (
 						<Div>
 							<Left>
-								<ProductBrand>{brand}</ProductBrand>
-								<ProductName>{name}</ProductName>
-								<PriceDiv>
+								<ProductBrand miniVersion={miniVersion}>{brand}</ProductBrand>
+								<ProductName miniVersion={miniVersion}>{name}</ProductName>
+								<PriceDiv miniVersion={miniVersion}>
 									<Price prices={prices} />
 								</PriceDiv>
-								<ProductAttributes>
+								<ProductAttributes miniVersion={miniVersion}>
 									{attributes.map((attribute) => (
 										<ProductAttribute
 											key={attribute.name}
@@ -51,21 +57,20 @@ export default class CartProduct extends React.Component {
 													(el) => el.name === attribute.name
 												).selectedItem
 											}
+											miniVersion={miniVersion}
 										/>
 									))}
 								</ProductAttributes>
 							</Left>
 							<Right>
 								<QuantityWrapper>
-									<QuantityButton onClick={() => cartAdd(cartProduct)}>
-										+
-									</QuantityButton>
+									<QuantityButton onClick={() => cartAdd()}>+</QuantityButton>
 									<div>{quantity}</div>
-									<QuantityButton onClick={() => cartRemove(cartProduct)}>
+									<QuantityButton onClick={() => cartRemove()}>
 										-
 									</QuantityButton>
 								</QuantityWrapper>
-								<CartProductImage gallery={gallery} />
+								<CartProductImage gallery={gallery} miniVersion={miniVersion} />
 							</Right>
 						</Div>
 					);
@@ -119,23 +124,24 @@ const Div = styled.div`
 	width: 100%;
 	margin-top: 20px;
 	margin-bottom: 20px;
+	gap: 20px;
 `;
 
 const ProductBrand = styled.div`
-	font-size: 30px;
-	font-weight: 600;
+	font-size: ${(props) => (!props.miniVersion ? "30px" : "20px")};
+	font-weight: ${(props) => (!props.miniVersion ? "600" : "300")};
 	line-height: 30px;
 `;
 
 const ProductName = styled.div`
-	font-size: 28px;
+	font-size: ${(props) => (!props.miniVersion ? "28px" : "18px")};
 	font-weight: 300;
 `;
 
 const ProductAttributes = styled.div`
 	display: flex;
 	flex-direction: column;
-	gap: 10px;
-	margin-top: 10px;
-	margin-bottom: 10px;
+	gap: ${(props) => (!props.miniVersion ? "10px" : "7px")};
+	margin-top: ${(props) => (!props.miniVersion ? "10px" : "7px")};
+	margin-bottom: ${(props) => (!props.miniVersion ? "10px" : "7px")};
 `;

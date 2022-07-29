@@ -3,6 +3,8 @@ import styled from "styled-components";
 import ProductAttribute from "../simple/ProductAttribute";
 import parse from "html-react-parser";
 import Price from "../simple/Price";
+import CartContainer from "../container/CartContainer";
+import { cartAddProduct } from "../../features/cart/cartSlice";
 
 export default class ProductDetails extends React.Component {
 	constructor(props) {
@@ -20,8 +22,16 @@ export default class ProductDetails extends React.Component {
 
 	render() {
 		const { product, selectedAttributes, selectAttribute } = this.props;
-		const { name, inStock, description, gallery, attributes, brand, prices } =
-			product;
+		const {
+			id,
+			name,
+			inStock,
+			description,
+			gallery,
+			attributes,
+			brand,
+			prices,
+		} = product;
 		return (
 			<Div>
 				<Images>
@@ -54,9 +64,24 @@ export default class ProductDetails extends React.Component {
 					<PriceDiv>
 						<Price prices={prices} />
 					</PriceDiv>
-					<CallToActionButton disabled={!inStock}>
-						ADD TO CART
-					</CallToActionButton>
+					{
+						<CartContainer>
+							{({ cartAddProduct }) => (
+								<CallToActionButton
+									disabled={!inStock}
+									onClick={() =>
+										cartAddProduct({
+											product: id,
+											quantity: 1,
+											selectedAttributes,
+										})
+									}
+								>
+									ADD TO CART
+								</CallToActionButton>
+							)}
+						</CartContainer>
+					}
 					<Description>{parse(description)}</Description>
 				</Info>
 			</Div>

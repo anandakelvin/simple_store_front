@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Categories from "../composite/Categories";
 import Logo from "../../assets/logo.svg";
 import Currencies from "../composite/Currencies";
+import NavbarCart from "../simple/NavbarCart";
 
 export default class Navbar extends React.Component {
 	render() {
@@ -14,6 +15,7 @@ export default class Navbar extends React.Component {
 				</LogoWrapper>
 				<RightSideWrapper>
 					<Currencies />
+					<NavbarCart />
 				</RightSideWrapper>
 			</Nav>
 		);
@@ -24,6 +26,7 @@ const RightSideWrapper = styled.div`
 	display: flex;
 	justify-content: end;
 	align-items: center;
+	gap: 10px;
 `;
 
 const LogoWrapper = styled.div`

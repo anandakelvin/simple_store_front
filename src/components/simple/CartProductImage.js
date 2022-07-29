@@ -34,9 +34,9 @@ export default class CartProductImage extends React.Component {
 	}
 
 	render() {
-		const { gallery } = this.props;
+		const { gallery, miniVersion } = this.props;
 		return (
-			<ImageWrapper>
+			<ImageWrapper miniVersion={miniVersion}>
 				<Image src={gallery[this.state.selectedImageIndex]} />
 				<ImageButtonsWrapper>
 					<ImageButton onClick={this.handleNextImage}>
@@ -85,5 +85,5 @@ const ImageWrapper = styled.div`
 	flex-direction: column;
 	overflow: hidden;
 	height: 100%;
-	width: 200px;
+	width: ${(props) => (!props.miniVersion ? "200px" : "150px")};
 `;

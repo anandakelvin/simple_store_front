@@ -42,10 +42,11 @@ export default class CartRoute extends React.Component {
 											const total = value.reduce(
 												(acc, el) =>
 													acc +
-													find(
-														el.prices,
-														(e) => e.currency.symbol === selectedCurrency.symbol
-													).amount,
+														find(
+															el.prices,
+															(e) =>
+																e.currency.symbol === selectedCurrency.symbol
+														)?.amount ?? 0,
 												0
 											);
 											return (

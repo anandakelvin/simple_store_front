@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { fetchCategories } from "../../features/categories/categoriesSlice";
 
-class CategoriesContainer extends React.Component {
+class CategoriesContainer extends React.PureComponent {
 	componentDidMount() {
 		this.props.dispatch(fetchCategories());
 	}
