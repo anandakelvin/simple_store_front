@@ -1,16 +1,41 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
+import { BiCartAlt } from "react-icons/bi";
 import styled from "styled-components";
 import Price from "./Price";
+import CartContainer from "../container/CartContainer";
 
 class CategoryProduct extends React.Component {
 	render() {
 		const { product, history, match } = this.props;
-		const { id, name, gallery, brand, prices, inStock } = product;
+		const { id, name, gallery, brand, prices, inStock, attributes } = product;
 		return (
-			<Button onClick={() => history.push(`${match.url}/products/${id}`)}>
+			<Button
+				onClick={() => history.push(`${match.url}/products/${id}`)}
+				inStock={inStock}
+			>
 				{!inStock && <UnavailableOverlay>OUT OF STOCK</UnavailableOverlay>}
-				<Image src={gallery[0]} />
+				<ImageWrapper>
+					<CartContainer>
+						{({ cartAddProduct }) => (
+							<CartCircle
+								onClick={(e) => {
+									e.stopPropagation();
+									cartAddProduct({
+										product: id,
+										selectedAttributes: attributes.map((el) => ({
+											name: el.name,
+											selectedItem: el.items[0].id,
+										})),
+									});
+								}}
+							>
+								<BiCartAlt size={25} />
+							</CartCircle>
+						)}
+					</CartContainer>
+					<Image src={gallery[0]} />
+				</ImageWrapper>
 				<Gap />
 				<ProductBrandName>{`${brand} ${name}`}</ProductBrandName>
 				<PriceDiv>
@@ -34,6 +59,25 @@ const UnavailableOverlay = styled.div`
 	background-color: rgba(255, 255, 255, 0.5);
 	color: gray;
 	font-size: 16px;
+`;
+
+const ImageWrapper = styled.div`
+	position: relative;
+`;
+
+const CartCircle = styled.div`
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 50px;
+	height: 50px;
+	bottom: -10px;
+	right: 10px;
+	border-radius: 50px;
+	background-color: #5ece7b;
+	color: white;
 `;
 
 const Gap = styled.div`
@@ -62,6 +106,14 @@ const Button = styled.button`
 
 	:hover {
 		box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+	}
+	& ${CartCircle} {
+		transition: opacity 0.3s ease-in-out;
+		opacity: 0;
+	}
+	&:hover ${CartCircle} {
+		opacity: ${(props) => (props.inStock ? 1 : 0)};
+		transition: opacity 0.3s ease-in-out;
 	}
 `;
 

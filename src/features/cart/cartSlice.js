@@ -3,86 +3,86 @@ import { isEqual } from "lodash";
 
 const initialState = {
 	value: [
-		{
-			product: "ps-5",
-			quantity: 1,
-			selectedAttributes: [
-				{ name: "Color", selectedItem: "Green" },
-				{ name: "Capacity", selectedItem: "512G" },
-			],
-			prices: [
-				{
-					amount: 844.02,
-					currency: {
-						symbol: "$",
-					},
-				},
-				{
-					amount: 606.67,
-					currency: {
-						symbol: "£",
-					},
-				},
-				{
-					amount: 1088.79,
-					currency: {
-						symbol: "A$",
-					},
-				},
-				{
-					amount: 91147.25,
-					currency: {
-						symbol: "¥",
-					},
-				},
-				{
-					amount: 63826.91,
-					currency: {
-						symbol: "₽",
-					},
-				},
-			],
-		},
-		{
-			product: "ps-5",
-			quantity: 1,
-			selectedAttributes: [
-				{ name: "Color", selectedItem: "Green" },
-				{ name: "Capacity", selectedItem: "512G" },
-			],
-			prices: [
-				{
-					amount: 844.02,
-					currency: {
-						symbol: "$",
-					},
-				},
-				{
-					amount: 606.67,
-					currency: {
-						symbol: "£",
-					},
-				},
-				{
-					amount: 1088.79,
-					currency: {
-						symbol: "A$",
-					},
-				},
-				{
-					amount: 91147.25,
-					currency: {
-						symbol: "¥",
-					},
-				},
-				{
-					amount: 63826.91,
-					currency: {
-						symbol: "₽",
-					},
-				},
-			],
-		},
+		// {
+		// 	product: "ps-5",
+		// 	quantity: 1,
+		// 	selectedAttributes: [
+		// 		{ name: "Color", selectedItem: "Green" },
+		// 		{ name: "Capacity", selectedItem: "512G" },
+		// 	],
+		// 	prices: [
+		// 		{
+		// 			amount: 844.02,
+		// 			currency: {
+		// 				symbol: "$",
+		// 			},
+		// 		},
+		// 		{
+		// 			amount: 606.67,
+		// 			currency: {
+		// 				symbol: "£",
+		// 			},
+		// 		},
+		// 		{
+		// 			amount: 1088.79,
+		// 			currency: {
+		// 				symbol: "A$",
+		// 			},
+		// 		},
+		// 		{
+		// 			amount: 91147.25,
+		// 			currency: {
+		// 				symbol: "¥",
+		// 			},
+		// 		},
+		// 		{
+		// 			amount: 63826.91,
+		// 			currency: {
+		// 				symbol: "₽",
+		// 			},
+		// 		},
+		// 	],
+		// },
+		// {
+		// 	product: "ps-5",
+		// 	quantity: 1,
+		// 	selectedAttributes: [
+		// 		{ name: "Color", selectedItem: "Green" },
+		// 		{ name: "Capacity", selectedItem: "512G" },
+		// 	],
+		// 	prices: [
+		// 		{
+		// 			amount: 844.02,
+		// 			currency: {
+		// 				symbol: "$",
+		// 			},
+		// 		},
+		// 		{
+		// 			amount: 606.67,
+		// 			currency: {
+		// 				symbol: "£",
+		// 			},
+		// 		},
+		// 		{
+		// 			amount: 1088.79,
+		// 			currency: {
+		// 				symbol: "A$",
+		// 			},
+		// 		},
+		// 		{
+		// 			amount: 91147.25,
+		// 			currency: {
+		// 				symbol: "¥",
+		// 			},
+		// 		},
+		// 		{
+		// 			amount: 63826.91,
+		// 			currency: {
+		// 				symbol: "₽",
+		// 			},
+		// 		},
+		// 	],
+		// },
 	],
 };
 
@@ -107,7 +107,7 @@ export const cartSlice = createSlice({
 				product.quantity += 1;
 				return;
 			}
-			state.value.push(action.payload);
+			state.value.push({ ...action.payload, quantity: 1 });
 		},
 		cartAdd(state, action) {
 			const product = state.value[action.payload.cartProductIndex];

@@ -10,6 +10,15 @@ const CATEGORY = gql`
 				gallery
 				inStock
 				brand
+				attributes {
+					name
+					type
+					items {
+						id
+						displayValue
+						value
+					}
+				}
 				prices {
 					amount
 					currency {

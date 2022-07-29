@@ -31,25 +31,27 @@ class MiniCart extends React.Component {
 						return (
 							<>
 								<div>My Bag, {quantities} items</div>
-								<CartProducts
-									cartProducts={value}
-									cartAdd={cartAdd}
-									cartRemove={cartRemove}
-									selectAttribute={selectAttribute}
-									updatePrices={updatePrices}
-									miniVersion={true}
-								/>
+								<ScrollableWrapper>
+									<CartProducts
+										cartProducts={value}
+										cartAdd={cartAdd}
+										cartRemove={cartRemove}
+										selectAttribute={selectAttribute}
+										updatePrices={updatePrices}
+										miniVersion={true}
+									/>
+								</ScrollableWrapper>
 								<CurrenciesContainer>
 									{({ selectedCurrency, status }) => {
 										if (status === "succeeded") {
 											const total = value.reduce(
 												(acc, el) =>
 													acc +
-														find(
-															el.prices,
-															(e) =>
-																e.currency.symbol === selectedCurrency.symbol
-														)?.amount ?? 0,
+													(find(
+														el.prices,
+														(e) => e.currency.symbol === selectedCurrency.symbol
+													)?.amount ?? 0) *
+														el.quantity,
 												0
 											);
 											return (
@@ -90,6 +92,12 @@ class MiniCart extends React.Component {
 
 export default MiniCart = withRouter(MiniCart);
 
+const ScrollableWrapper = styled.div`
+	max-height: 400px;
+	overflow: scroll;
+	margin-top: 10px;
+`;
+
 const ActionButtonsWrapper = styled.div`
 	display: flex;
 	gap: 10px;
@@ -121,7 +129,7 @@ const Info = styled.div`
 `;
 
 const InfoDiv = styled.div`
-	margin-top: 20px;
+	margin-top: 10px;
 `;
 
 const CallToActionButton = styled.button`

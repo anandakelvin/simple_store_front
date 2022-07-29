@@ -64,24 +64,21 @@ export default class ProductDetails extends React.Component {
 					<PriceDiv>
 						<Price prices={prices} />
 					</PriceDiv>
-					{
-						<CartContainer>
-							{({ cartAddProduct }) => (
-								<CallToActionButton
-									disabled={!inStock}
-									onClick={() =>
-										cartAddProduct({
-											product: id,
-											quantity: 1,
-											selectedAttributes,
-										})
-									}
-								>
-									ADD TO CART
-								</CallToActionButton>
-							)}
-						</CartContainer>
-					}
+					<CartContainer>
+						{({ cartAddProduct }) => (
+							<CallToActionButton
+								disabled={!inStock}
+								onClick={() =>
+									cartAddProduct({
+										product: id,
+										selectedAttributes,
+									})
+								}
+							>
+								ADD TO CART
+							</CallToActionButton>
+						)}
+					</CartContainer>
 					<Description>{parse(description)}</Description>
 				</Info>
 			</Div>

@@ -39,7 +39,7 @@ export default class CartProduct extends React.Component {
 					}
 					const { brand, name, prices, attributes, gallery } = data.product;
 					return (
-						<Div>
+						<Div miniVersion={miniVersion}>
 							<Left>
 								<ProductBrand miniVersion={miniVersion}>{brand}</ProductBrand>
 								<ProductName miniVersion={miniVersion}>{name}</ProductName>
@@ -122,8 +122,8 @@ const Left = styled.div`
 const Div = styled.div`
 	display: flex;
 	width: 100%;
-	margin-top: 20px;
-	margin-bottom: 20px;
+	margin-top: ${(props) => (!props.miniVersion ? "20px" : "10px")};
+	margin-bottom: ${(props) => (!props.miniVersion ? "20px" : "10px")};
 	gap: 20px;
 `;
 
