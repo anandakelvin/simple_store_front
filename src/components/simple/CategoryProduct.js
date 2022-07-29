@@ -1,6 +1,6 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
-import { BiCartAlt } from "react-icons/bi";
+import { BsCartPlus } from "react-icons/bs";
 import styled from "styled-components";
 import Price from "./Price";
 import CartContainer from "../container/CartContainer";
@@ -30,7 +30,7 @@ class CategoryProduct extends React.Component {
 									});
 								}}
 							>
-								<BiCartAlt size={25} />
+								<BsCartPlus size={25} />
 							</CartCircle>
 						)}
 					</CartContainer>
