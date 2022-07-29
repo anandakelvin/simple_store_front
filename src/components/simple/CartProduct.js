@@ -20,12 +20,7 @@ export default class CartProduct extends React.Component {
 		} = this.props;
 		const { product, selectedAttributes, quantity } = cartProduct;
 		return (
-			<Query
-				query={PRODUCT}
-				variables={{ productId: product }}
-				client={client}
-				onCompleted={(data) => updatePrices(data.product.prices)}
-			>
+			<Query query={PRODUCT} variables={{ productId: product }} client={client}>
 				{({ loading, error, data }) => {
 					if (loading) {
 						return (
@@ -44,7 +39,7 @@ export default class CartProduct extends React.Component {
 								<ProductBrand miniVersion={miniVersion}>{brand}</ProductBrand>
 								<ProductName miniVersion={miniVersion}>{name}</ProductName>
 								<PriceDiv miniVersion={miniVersion}>
-									<Price prices={prices} />
+									<Price prices={prices} updatePrices={updatePrices} />
 								</PriceDiv>
 								<ProductAttributes miniVersion={miniVersion}>
 									{attributes.map((attribute) => (
