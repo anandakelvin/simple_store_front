@@ -1,10 +1,6 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
 ## Available Scripts
 
-In the endpoint directory, you can run:
+First, in the endpoint directory, you can run:
 
 ### `npm run start`
 
